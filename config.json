@@ -1,0 +1,16 @@
+{
+  "service_id": "s:example",
+  "default_subscription": {
+    "action": "subscribe",
+    "characters": [
+      "all"
+    ],
+    "eventNames": [
+      "Death"
+    ],
+    "worlds": [
+      "1"
+    ],
+    "service": "event"
+  }
+}

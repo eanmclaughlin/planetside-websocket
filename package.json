@@ -1,0 +1,19 @@
+{
+  "name": "planetside-websocket",
+  "version": "1.0.0",
+  "description": "A WebSocket wrapper for Planetside 2's event stream.",
+  "main": "planetside-websocket.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "Planetside",
+    "websocket"
+  ],
+  "author": "Ean McLaughlin",
+  "license": "ISC",
+  "dependencies": {
+    "util": "^0.10.3",
+    "ws": "^0.8.0"
+  }
+}
