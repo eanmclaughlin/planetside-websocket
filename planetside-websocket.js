@@ -32,4 +32,4 @@ function PS2Socket() {
 
 util.inherits(PS2Socket, EventEmitter);
 
-module.exports.PS2Socket = PS2Socket;
+module.exports = PS2Socket;
