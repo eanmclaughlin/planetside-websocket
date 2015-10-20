@@ -1,8 +1,6 @@
 /**
  * Created by Pepper on 10/18/2015.
  */
-
-
 var config = require('./config.json');
 var EventEmitter = require('events');
 var util = require('util');
@@ -11,11 +9,10 @@ var WebSocket = require('ws');
 function PS2Socket() {
     EventEmitter.call(this);
     var self = this;
-    var socket = new WebSocket('wss://push.planetside2.com/streaming?environment=ps2&service-id=' + config.service_id);
+    var socket = new WebSocket(config.url + config.service_id);
 
     socket.on('open', function () {
-        console.log(new Date() + " Connected to websocket.");
-        socket.send(JSON.stringify(config.default_subscription));
+        self.emit('socket-open', new Date());
     });
 
     socket.on('message', function (data) {
@@ -26,10 +23,15 @@ function PS2Socket() {
     });
 
     socket.on('close', function () {
-        console.log(new Date() + " Disconnected from websocket.");
+        self.emit('socket-close', new Date());
     });
 }
 
 util.inherits(PS2Socket, EventEmitter);
 
 module.exports = new PS2Socket();
+
+Object.defineProperty(module.exports, "config", {
+    enumerable: true,
+    value: config
+});
