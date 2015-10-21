@@ -1,6 +1,7 @@
 {
   "service_id": "s:example",
   "socket_url": "wss://push.planetside2.com/streaming?environment=ps2&service-id=",
+  "reconnect_delay": 2500,
   "default_subscription": {
     "action": "subscribe",
     "characters": [
