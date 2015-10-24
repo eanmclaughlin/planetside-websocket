@@ -2,8 +2,11 @@
   "name": "planetside-websocket",
   "version": "1.0.4",
   "description": "A WebSocket wrapper for Planetside 2's event stream.",
-  "main": "planetside-websocket.js",
-  "scripts": {
+  "main": "ps2ws.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/computertechie/planetside-websocket.git"
   },
   "keywords": [
     "Planetside 2",
@@ -11,7 +14,12 @@
   ],
   "author": "Ean McLaughlin",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/computertechie/planetside-websocket/issues"
+  },
+  "homepage": "https://github.com/computertechie/planetside-websocket#readme",
   "dependencies": {
+    "config": "^1.16.0",
     "util": "^0.10.3",
     "ws": "^0.8.0"
   }

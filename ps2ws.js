@@ -1,19 +1,23 @@
 /**
  * Created by Pepper on 10/18/2015.
  */
-var config = require('./config.json');
+
+process.env.SUPPRESS_NO_CONFIG_WARNING = 'y';
+var config = require('config');
 var EventEmitter = require('events');
 var util = require('util');
 var WebSocket = require('ws');
 
-var PS2Socket = function () {
+var PS2Socket = function (options) {
     EventEmitter.call(this);
     var self = this;
     this.socket = {};
 
+    config.util.extendDeep(config, options);
+    config.util.setModuleDefaults('ps2ws', config);
+
     function connect() {
-        console.log("connect()");
-        self.socket = new WebSocket(config.socket_url + config.service_id);
+        self.socket = new WebSocket(config.get('ps2ws.socket_url') + config.get('ps2ws.service_id'));
 
         self.socket.on('open', function () {
             self.emit('socket-open', new Date());
@@ -28,7 +32,7 @@ var PS2Socket = function () {
 
         self.socket.on('close', function () {
             self.emit('socket-close', new Date());
-            setTimeout(connect, config.reconnect_delay);
+            setTimeout(connect, config.get('ps2ws.reconnect_delay'));
         });
     }
 
@@ -41,9 +45,4 @@ PS2Socket.prototype.send = function (message, options, callback) {
     this.socket.send(message, options, callback);
 };
 
-module.exports = new PS2Socket();
-
-Object.defineProperty(module.exports, "config", {
-    enumerable: true,
-    value: config
-});
+module.exports = PS2Socket;
