@@ -1,6 +1,6 @@
 {
   "name": "planetside-websocket",
-  "version": "1.0.4",
+  "version": "0.0.5",
   "description": "A WebSocket wrapper for Planetside 2's event stream.",
   "main": "ps2ws.js",
   "scripts": {},
