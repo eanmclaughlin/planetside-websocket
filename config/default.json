@@ -1,5 +1,5 @@
 {
-  "service_id": "s:example",
-  "socket_url": "wss://push.planetside2.com/streaming?environment=ps2&service-id=",
-  "reconnect_delay": 2500
+    "service_id": "s:example",
+    "socket_url": "wss://push.planetside2.com/streaming?environment=ps2&service-id=",
+    "reconnect_delay": 2500
 }
