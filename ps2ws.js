@@ -33,7 +33,7 @@ var PS2Socket = function (options) {
 
         self.socket.on('close', function () {
             self.emit('socket-close', new Date());
-            setTimeout(connect, config.get('ps2ws.reconnect_delay'));
+            setTimeout(connect, config.get('websocket.reconnect_delay'));
         });
     }
 
