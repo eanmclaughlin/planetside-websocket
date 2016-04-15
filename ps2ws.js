@@ -21,18 +21,24 @@ var PS2Socket = function (options) {
         self.socket = new WebSocket(config.get('websocket.socket_url') + config.get('websocket.service_id'));
 
         self.socket.on('open', function () {
-            self.emit('socket-open', new Date());
+            self.emit('open', new Date());
         });
 
         self.socket.on('message', function (data) {
             var dataObj = JSON.parse(data);
-            if (dataObj.service == "event" && dataObj.type == "serviceMessage") {
-                self.emit(dataObj.payload.event_name, dataObj.payload);
+            if (dataObj.type == "serviceMessage") {
+                self.emit("event", dataObj.payload);
+            }
+            if (dataObj.type == "serviceStateChanged") {
+                self.emit("service", dataObj);
+            }
+            if(dataObj.type == "heartbeat") {
+                self.emit("heartbeat", dataObj);
             }
         });
 
         self.socket.on('close', function () {
-            self.emit('socket-close', new Date());
+            self.emit('close', new Date());
             setTimeout(connect, config.get('websocket.reconnect_delay'));
         });
     }
