@@ -22,6 +22,8 @@ var PS2Socket = function (options) {
 
         self.socket.on('open', function () {
             self.emit('open', new Date());
+            if(self.subscription)
+                self.send(self.subscription);
         });
 
         self.socket.on('message', function (data) {
@@ -49,6 +51,8 @@ var PS2Socket = function (options) {
 util.inherits(PS2Socket, EventEmitter);
 
 PS2Socket.prototype.send = function (message, options, callback) {
+    if(options.subscribe)
+        this.subscription = message;
     this.socket.send(message, options, callback);
 };
 
