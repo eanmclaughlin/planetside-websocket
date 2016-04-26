@@ -9,7 +9,13 @@ var util = require('util');
 var WebSocket = require('ws');
 
 var PS2Socket = function (options) {
-    options = options || config;
+    if(options){
+        for(option in config){
+            if(!options[option])
+                options[option] = config[option];
+        }
+    }
+
     EventEmitter.call(this);
     var self = this;
     this.socket = {};
