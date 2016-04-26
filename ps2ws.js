@@ -15,6 +15,8 @@ var PS2Socket = function (options) {
                 options[option] = config[option];
         }
     }
+    else 
+        options = config;
 
     EventEmitter.call(this);
     var self = this;
