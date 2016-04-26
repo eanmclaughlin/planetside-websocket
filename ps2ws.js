@@ -3,22 +3,19 @@
  */
 
 process.env.SUPPRESS_NO_CONFIG_WARNING = 'y';
-var defaultConfig = require('./config/default.json');
-var config = require('config');
+var config = require('./config/default.json');
 var EventEmitter = require('events');
 var util = require('util');
 var WebSocket = require('ws');
 
 var PS2Socket = function (options) {
+    options = options || config;
     EventEmitter.call(this);
     var self = this;
     this.socket = {};
 
-    config.util.extendDeep(defaultConfig, options);
-    config.util.setModuleDefaults('websocket', defaultConfig);
-
     function connect() {
-        self.socket = new WebSocket(config.get('websocket.socket_url') + config.get('websocket.service_id'));
+        self.socket = new WebSocket(options.socket_url + options.service_id);
 
         self.socket.on('open', function () {
             self.emit('open', new Date());
@@ -40,7 +37,7 @@ var PS2Socket = function (options) {
 
         self.socket.on('close', function () {
             self.emit('close', new Date());
-            setTimeout(connect, config.get('websocket.reconnect_delay'));
+            setTimeout(connect, options.reconnect_delay);
         });
     }
 

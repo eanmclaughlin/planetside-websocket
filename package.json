@@ -1,6 +1,6 @@
 {
   "name": "planetside-websocket",
-  "version": "0.0.7",
+  "version": "1.0.0",
   "description": "A WebSocket wrapper for Planetside 2's event stream.",
   "main": "ps2ws.js",
   "scripts": {},
@@ -19,7 +19,6 @@
   },
   "homepage": "https://github.com/computertechie/planetside-websocket#readme",
   "dependencies": {
-    "config": "^1.16.0",
     "util": "^0.10.3",
     "ws": "^0.8.0"
   }
