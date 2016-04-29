@@ -33,6 +33,7 @@ var PS2Socket = function (options) {
             var dataObj = JSON.parse(data);
             if (dataObj.type == "serviceMessage") {
                 dataObj.payload.timestamp *= 1000;
+                dataObj.received = Date.now();
                 self.emit("event", dataObj.payload);
             }
             if (dataObj.type == "serviceStateChanged") {
